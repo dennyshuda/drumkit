@@ -6,11 +6,13 @@ for (let index = 0; index < drumLength; index++) {
     console.log(drumElement.innerHTML);
     const keyboard = drumElement.innerHTML;
     makeSound(keyboard);
+    buttonAnimation(keyboard);
   });
 }
 
 document.addEventListener("keypress", (event) => {
   makeSound(event.key);
+  buttonAnimation(event.key);
 });
 
 function makeSound(keyboard) {
@@ -46,4 +48,13 @@ function makeSound(keyboard) {
     default:
       break;
   }
+}
+
+function buttonAnimation(currentKey) {
+  const activeButton = document.querySelector(`.${currentKey}`);
+  activeButton.classList.add("pressed");
+
+  setTimeout(() => {
+    activeButton.classList.remove("pressed");
+  }, 100);
 }
